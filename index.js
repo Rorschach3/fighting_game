@@ -9,7 +9,7 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 const gravity = 0.7
 
 class Sprite {
-  constructor({ position, velocity, color = 'red', offset }) {
+  constructor({ position, velocity, color = 'green', offset }) {
     this.position = position
     this.velocity = velocity
     this.width = 50
@@ -34,7 +34,7 @@ class Sprite {
 
     // attack box
     if (this.isAttacking) {
-      c.fillStyle = 'green'
+      c.fillStyle = 'yellow'
       c.fillRect(
         this.attackBox.position.x,
         this.attackBox.position.y,
@@ -137,16 +137,16 @@ function animate() {
 
   // player movement
   if (keys.a.pressed && player.lastKey === 'a') {
-    player.velocity.x = -5
+    player.velocity.x = -10
   } else if (keys.d.pressed && player.lastKey === 'd') {
-    player.velocity.x = 5
+    player.velocity.x = 10
   }
 
   // Enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
-    enemy.velocity.x = -5
+    enemy.velocity.x = -10
   } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
-    enemy.velocity.x = 5
+    enemy.velocity.x = 10
   }
 
   // detect for collision
@@ -186,7 +186,7 @@ window.addEventListener('keydown', (event) => {
       player.lastKey = 'a'
       break
     case 'w':
-      player.velocity.y = -20
+      player.velocity.y = -15
       break
     case ' ':
       player.attack()
@@ -201,7 +201,7 @@ window.addEventListener('keydown', (event) => {
       enemy.lastKey = 'ArrowLeft'
       break
     case 'ArrowUp':
-      enemy.velocity.y = -20
+      enemy.velocity.y = -15
       break
     case 'ArrowDown':
       enemy.isAttacking = true
